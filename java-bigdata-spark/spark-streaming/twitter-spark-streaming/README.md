@@ -3,7 +3,7 @@ twitter-spark-streaming
 
 An example for using Spark DStream to fetch Twitter data.
 
-To excute this example, you need your pair of keys from your twitter account [Twitter Apps](https://apps.twitter.com/).
+To run this project, you need your pair of keys from your twitter account  [Twitter Apps](https://apps.twitter.com/).
 
 
  * Consumer Key (API Key) 
