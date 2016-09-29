@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         
+	  <modelVersion>4.0.0</modelVersion>
+	  <parent>
+			<groupId>com.farouk.bengharssallah.java.bigdata.spark</groupId>
+			<artifactId>java-bigdata-spark</artifactId>
+			<version>${project-global-version}</version>
+      </parent>
+	  <groupId>com.farouk.bengharssallah.java.bigdata.spark.machinelearning</groupId>
+	  <artifactId>spark-machine-learning</artifactId>
+	  <packaging>pom</packaging>
+	  
+	  <name>Java Bigdata Spark Machine Learning APIs</name>
+	  <description>Modules libraries containing JAVA bigdata Spark Machine Learning APIs to extract and analyze massive data amount</description>
+	  
+	  <developers>
+		<developer>
+		  <name>Farouk BEN GHARSSALLAH</name>
+		  <email>farouk.bengarssallah@gmail.com</email>
+		</developer>
+	  </developers>
+   
+	  <modules>
+			<module>classification-mlib-spark</module>
+			<module>clustering-mlib-spark</module>
+			<module>collaborative-filtering-mlib-spark</module>
+			<module>decision-tree-mlib-spark</module>
+	  </modules>
+	
+</project>

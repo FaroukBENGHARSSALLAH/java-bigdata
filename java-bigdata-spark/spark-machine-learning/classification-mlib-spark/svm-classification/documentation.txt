@@ -1,0 +1,99 @@
+	
+  * Face-recognizer
+
+        Suppose you have got a problem to distinguish between Male and Female, in a set of images, I mean a set of millions of images. How will you do that? 
+ Or how do Facebook recognize your face when you and your close buddies have taken a selfie? So one thing that comes into the mind is there must be some logic, 
+ algorithm and maths behind this. There must be some programs which will be using in that algorithm, maths which will be running on those images to classify them.
+So, this project is all about discussing an algorithm and a program implementing such an algorithm which will help us in classifying images(male or female) based on s
+ome previously known/defined images.
+
+  * Overview: SVM (Support Vector Machine)
+
+        SVM is a supervised learning algorithm which is used for classification and regression analysis of dataset through pattern matching. General Pattern analysis 
+ algorithms study general types of relations in datasets such as correlations and classifications. The data in the Objects/images need to be converted into n-dimensional 
+ vector with each coordinate having some numerical value. In short, object in its numerical representable form. SVM works smartly without computing all the coordinates 
+ of the objects. Instead, it uses a method known as kernel trick, which calculates the dot product between , (e.g. a measure of ‘similarity’ between ) where and are the 
+ transformed vectors of two different images. Through this transformed data it finds a decision boundary between the possible outputs.
+ 
+      As earlier mentioned, SVM can be used for classification and linear regression. Here we will discuss a classification example.  Particularly, the focus will be 
+ on Linear SVM.
+
+  * Linear SVM
+
+       Linear SVM search for a hyperplane that symmetrically separates the data points in the training set between different classes. Here this is known as decision boundary, 
+that separates the space into two halves: one half for class '0', and the other half for class '1'.  This explanation applies only to dataset having two data classes
+
+     - SEE PICTURE figure-1    TITLE OF THE PICTURE : 'A two-class, linearly separable dataset.' 
+    
+      Training this dataset yields the below decision boundary. As the set of data points are easily linearly separable, the SVM is 
+  able to draw a margin that suitably separates the training data.
+  
+     - SEE PICTURE figure-2    TITLE OF THE PICTURE : 'Data points arrangement post linear SVM' 
+
+   * The problem statement
+
+          We have a set of Grey-scaled images having fixed sizes in pixel. The image set consists of different facial expression of around 1000 different males and females. 
+  Now our challenge is to implement liner svm in a program to decide if a given image is of male or female, with the help of existing images. These images will be 
+  used as training and test data.
+  
+  
+              1- first step : use this command in IamgeParser : 
+              
+                                     command 1 : ImageParser 180×200 /home/smruti/spark-test/svm-test-images-male/ 1
+                                     
+                                       ~ ImageParser – Java class name of the file
+                                       ~ 180×200 – The pixel to which the images to be converted
+                                       ~ /home/smruti/spark-test/svm-test-images-male/ –  Folder having all the images belonging to male. 
+                                       ~ 1 – is the class of the persona . Here it represent to male. 0 for female
+                        
+                        
+                                           -> output :  input-1.csv
+                                                           1,andy.jpg,119 119 125 127 128 128 129 129 128 128 133 131 132 134 133 129 127 128 128 129 130……..
+                                                           1,amar.jpg,114 114 114 113 112 110 108 107 107 106 103 102 99 100 96 92 89 90 90 88 86 50 55 67…….
+                                                           1,bharat.jpg,53 53 52 52 52 52 52 52 52 52 53 52 50 49 49 50 52 53 50 51 53 54 54 53 51 50 53 53……..
+                                                           1,bryan.jpg,67 67 67 67 67 66 66 65 65 66 73 70 69 70 70 71 69 67 64 65 64 65 65 65 63 62 61 61…….. 
+                                                           
+                                                           
+                                     command 2 : ImageParser 180×200 /home/smruti/spark-test/svm-test-images-female/ 0    
+                                               -> output :  input-0.csv       
+                                                         0,virvi.jpg,140 141 142 145 145 144 143 142 145 147 146 143 141 141 140 137 137 138 142 144….
+                                                         0,kyra.jpg,117 120 121 122 120 116 114 114 112 113 115 118 120 119 119 118 121 120 119 118…
+                                                         0,shipra.jpg,145 143 143 143 143 143 144 142 144 144 145 146 146 147 147 148 148 146 144 143…
+                                                         0,shally.jpg,133 136 137 136 134 135 133 130 133 129 129 129 125 126 128 124 123 124 125 125…   
+                                                         
+                    
+                     Now we have two files having Class 0 (Female) and Class 1 (Male).  We can further break down individual files for training and test data.
+                                  
+                            
+                            
+                                  
+                2-  second step : use this command in SVM :
+                                bin/spark-submit –jars  /opt/poc/spark-1.3.1-bin-hadoop2.6/mllib/spark-mllib_2.10-1.0.0.jar –class “SVM”   –master   local[4]   
+                        /home/smruti/spark-test/svmdemo.jar /home/smruti/spark-test/SVM/training  /home/smruti/spark-test/SVM/test  100
+                        
+                        
+                            ~   /home/smruti/spark-test/svmdemo.jar   -  the jar after compiling the JAR
+                            ~   –class “SVM”    –    SVM is the java class file name to be executed in the jar
+                            ~   /home/smruti/spark-test/SVM/training    –   the folder that contains the training csv file we have generated by the previous step
+                            ~   /home/smruti/spark-test/SVM/test    –    the folder that contains the testing image csv files
+                            ~   100 – is number of iterations to perform without reaching convergence.
+                        
+                        
+                         -> output :      
+                         
+                                          tom_exp.11.jpg:1 — 1
+										  jbierl.201.jpg:0 — 0
+										  mike_exp.11.jpg:1 — 1
+										  tjdyke.11.jpg:0 — 0
+										  virvi.171.jpg:0 — 0
+										  dav_exp.11.jpg:1 — 1
+										  labenm.11.jpg:0 — 0
+										  and_exp.11.jpg:1 — 1
+										  namart.11.jpg:1 — 0
+										  glen_exp.21.jpg:0 — 1
+										  pat_exp.11.jpg:1 — 1
+										  svm accuracy : 0.8181818181818182    
+										  
+			 The output explains <test image name>: <Class (Male/Female) predicted by SVM> — <Expected Class (Male/Female)>. Here we can see out of 11 tests we have 
+     nine passed test cases and two failed test cases with an accuracy of 82%.			              
+                                                               

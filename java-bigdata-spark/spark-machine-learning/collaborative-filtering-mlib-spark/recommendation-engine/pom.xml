@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 
+      <modelVersion>4.0.0</modelVersion>
+	  <parent>
+			<groupId>com.farouk.bengharssallah.java.bigdata.spark.machinelearning.collaborativefiltering</groupId>
+	        <artifactId>collaborative-filtering-mlib-spark</artifactId>
+			<version>${project-global-version}</version>
+      </parent>
+	  <groupId>com.farouk.bengharssallah.java.bigdata.spark.machinelearning.collaborativefiltering.recommendationengine</groupId>
+	  <artifactId>recommendation-engine</artifactId>
+	  
+	  <name>Java Bigdata Spark Collaborativef Filtering Machine Learning APIs</name>
+	  <description>Modules libraries containing JAVA bigdata Spark Collaborativef Filtering Machine Learning APIs to present the user the relevant content</description>
+	  
+	   <dependencies>
+			  <dependency>
+					<groupId>org.apache.spark</groupId>
+					<artifactId>spark-core_2.11</artifactId>
+					<version>1.4.0</version>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.spark</groupId>
+				    <artifactId>spark-mllib_2.11</artifactId>
+				    <version>1.4.0</version>
+               </dependency>
+	  </dependencies>
+
+  
+<build>
+
+		<finalName>spark-wordcount</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>${java-jdk-version}</source>
+					<target>${java-jdk-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.ov.spark.training.WordCount</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+   
+</project>

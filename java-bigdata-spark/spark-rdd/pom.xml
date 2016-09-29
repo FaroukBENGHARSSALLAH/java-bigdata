@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 
+      <modelVersion>4.0.0</modelVersion>
+	  <parent>
+			<groupId>com.farouk.bengharssallah.java.bigdata.spark</groupId>
+			<artifactId>java-bigdata-spark</artifactId>
+			<version>${project-global-version}</version>
+      </parent>
+	  <groupId>com.farouk.bengharssallah.java.bigdata.spark.rdd</groupId>
+	  <artifactId>spark-rdd</artifactId>
+	  
+	  <name>Java Bigdata Spark RDD APIs</name>
+	  <description>Modules libraries containing JAVA bigdata Spark RDD APIs to extract and analyze massive data amount</description>
+	  
+	  <dependencies>
+			  <dependency>
+					<groupId>org.apache.spark</groupId>
+					<artifactId>spark-core_2.11</artifactId>
+					<version>1.4.0</version>
+				</dependency>
+	  </dependencies>
+
+  
+<build>
+
+		<finalName>spark-wordcount</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>${java-jdk-version}</source>
+					<target>${java-jdk-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.farouk.bengharssallah.java.bigdata.spark.rdd.WordCount</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+   
+</project>

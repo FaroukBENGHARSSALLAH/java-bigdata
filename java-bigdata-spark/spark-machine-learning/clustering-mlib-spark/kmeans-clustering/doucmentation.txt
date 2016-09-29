@@ -1,0 +1,58 @@
+	
+        How do you go about solving a problem of classifying some data without having any labels associated with the data?
+
+
+   Consider a Social Network Analysis problem. Let’s look at a group of people’s Social Network and get data about
+
+		    Who are the people that are exchanging messages back and forth.
+		    Who are the group of people posting regularly on certain kind of groups, etc.
+
+     And coming up with an analysis and classify certain kinds of people together without labelling/naming this as any group. This kind of Machine Learning
+ Classification problem is termed as Un-Supervised Learning. K-Means is by far the most popular and widely used algorithm in the Un-Supervised Learning.
+
+     - SEE PICTURE figure-1   
+
+         How it works?
+
+      Let me demonstrate with an example given by Andrew Ng given in his Machine Learning Algorithm tutorials. Consider these unlabelled data points.
+
+      - SEE PICTURE figure-2 
+      
+
+      The first step would be to randomly initialize cluster centroids. In this example I am taking the number of centroids as 2. But this number can vary as to how many 
+ unlabelled groups you want to divide your data into.
+
+
+       - SEE PICTURE figure-3 
+
+
+      The second step is Cluster Assignment step. So, we go through each and every data point and depending upon whether it’s closer to Red or Blue Cluster Centroid, color the 
+ data points as Red or Blue.
+
+
+       - SEE PICTURE figure-4 
+
+      The third step is the Move Centroid step. This step involved moving the each Cluster Centroid to position derived by calculating the mean of the corresponding colored 
+ data points. This means Blue point would be moved to the Mean we get from all the Blue data points and similarly for Red.
+
+
+       - SEE PICTURE figure-5 
+
+      Step Second and third would be repeated till the time the Cluster Centroid do not move any further.
+
+       - SEE PICTURE figure-6  and PICTURE figure-7             
+
+
+
+       What is Cost Function?
+       In this case, the Cost function is the total sum of the squared distance of every point to its corresponding cluster centroid.
+       
+
+         - SEE PICTURE figure-8 
+
+      The objective of K-Means id to minimize the Cost Function.
+
+ 
+
+      A Proof of Concept was done to demonstrate the accuracy of this algorithm by supplying training data set to MLLIB library of Apache Spark. Please refer this for setting 
+  up Apache Spark on your machine. Marks were collected of the First Semester students from an Engineering Institute.

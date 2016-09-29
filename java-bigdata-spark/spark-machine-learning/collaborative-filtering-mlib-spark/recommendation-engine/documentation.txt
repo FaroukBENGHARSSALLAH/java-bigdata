@@ -1,0 +1,103 @@
+
+
+   *   Motivation
+
+     Internet has now became a large e-marketplace. Millions of users browse millions of pages ( or items) of their relevance. User’s relevance to an item can be measured 
+ by many parameters like time spent on an item, likes, frequency etc. Recommendation engines can suggest an item to a user that user may find interesting and has not yet 
+ aware of ( or not yet seen or visited) , based on user’s previous affinity to other items and other users’ affinity to this item. The final goal of recommendation engines is 
+ to present the user the relevant content. 
+
+    *  Recommendation Engine
+    
+       A recommendation engine can make predictions for unknown user-item associations based on known user-item association. User-item association is user’s affinity to item. 
+ Multiple users will have affinity to multiple different items. Recommendation engine builds a prediction model based on known user-item associations (Training data) and 
+ then make predictions for unknown user-item associations (Test Data).
+
+
+          - SEE PICTURE figure-1    
+
+        An example of user-item association matrix – Users rated some of the items, recommendation engine will predict the unknown associations. For example if, for user U5, 
+ predictions are
+
+          - SEE PICTURE figure-2  
+
+      Based on these predictions item I5 looks most interesting to user U5.
+      
+
+
+     *    Collaborative Filtering Technique
+
+         Collaborative Filtering based recommender engines use matrix factorization model typically (Alternating Least Square method) to fill the missing entries of user-item 
+association. Item ratings are influenced by a set of factors, such as user’s choices and interests, called Latent Factors. These factor vary from user to user, so it is 
+difficult to estimate the impact of these factors on ratings. Collaborative Filtering uses mathematical techniques to infer these latent factors. Latent Factors are hidden 
+factors, of user’s or item’s, that can perfectly predict an item’s rating. For example, for a movie rating, latent factors could be age, sex and movie genre. More the 
+latent factors, better will be predictions.
+
+     *     Collaborative Filtering with Apache Spark 
+
+         Apache spark provides two variations of Collaborative Filtering, Explicit Feedback and Implicit Feedback. With explicit feedback, collaborative filtering algorithm treats
+ user-item matrix as explicit preferences given by user. In a real world example user’s preferences may be given in terms of implicit feedback (views, clicks, likes etc).
+  Apache Spark MLlib processes implicit feedback differently unlike standard approach with explicit feedback data. Collaborative Filtering in Apache Spark uses various 
+  parameters , their definition and usage can be found on Collaborative Filtering specifications.
+  
+  
+
+      *  A Movie Recommender example
+
+       In this example we will implement a movie recommender which will recommend you a list of 10 movies that you have not rated yet.
+
+                  Inputs : ratings.csv, movies.csv and number of iterations to the algorithm (are 10 in sample code)
+                  
+                  ratings.csv – a file containing ratings of movies given by different users
+                  Format: user-id,movie-id,rating
+
+
+
+			ratings.csv -> 	0,1,5.0
+							0,3,3.0
+							0,5,4.5
+							0,6,5.0
+							0,10,4.0
+							1,6,2.0
+							1,22,3.0
+							2,32,2.0
+							2,50,5.0
+							3,110,4.0
+							4,164,3.0
+							4,198,3.0
+							
+							
+
+
+
+				movies.csv – a file containing movie description
+				Format: movie-id,movie-name.
+				
+             movies.csv ->	1,Toy Story (1995)
+							2,Jumanji (1995)
+							3,Grumpier Old Men (1995)
+							4,Waiting to Exhale (1995)
+							5,Father of the Bride Part II (1995)
+							6,Heat (1995)
+
+
+
+A sample data-set can be downloaded from MovieLensDataset. Edit this dataset according to above format and insert your ratings as user-id 0.Output should be the top N movie 
+recommendations for user id 0, sorted by predicted rating in descending order. A sample output can be top 5 recommendation for user –
+
+				
+				MovieId 	Movie Name 			Predicted Rating
+				200		Avengers			 0.70
+				267		Frozen				 0.60
+				78		Dark Knight		 	 0.55
+				89		Minions 			 0.53
+				5000		Man of Steel 			 0.50
+
+            * Steps 
+
+   rtype this in your cmd : 
+
+
+
+            bin/spark-submit –jars mllib/spark-mllib_2.10-1.0.0.jar –class “mllib.example.RecommendationEngine” –master local[4] spark-mllib-example/example.jar 
+     spark-mllib-example/ml-latest-small/ratings.csv spark-mllib-example/ml-latest-small/movies.csv 10
