@@ -18,6 +18,6 @@ Spark MLlib is a distributed machine learning framework on top of Spark Core tha
 * feature extraction and transformation functions
 * optimization algorithms such as stochastic gradient descent, limited-memory BFGS (L-BFGS)
 	
-These projects are being currently developed
+> These projects are being currently developed
 
 
