@@ -17,5 +17,5 @@ The base Apache Hadoop framework is composed of the following modules:
 - 'MLlib Machine Learning Library'  implementes many common machine learning and statistical algorithms and shippes with large scale pipelines
 - 'GraphX'   a distributed graph processing framework on top of Apache Spark
 
-![alt text](https://github.com/FaroukBENGHARSSALLAH/design-pattern/blob/master/dp-behavioral/dp-behavioral-command/dp-behavioral-command.jpg "Spark Components")
+![alt text](https://github.com/FaroukBENGHARSSALLAH/java-bigdata/blob/master/java-bigdata-spark/spark-components.jpg "Spark Components")
 
