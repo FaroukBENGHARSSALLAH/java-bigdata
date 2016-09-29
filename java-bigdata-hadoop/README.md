@@ -16,5 +16,5 @@ The base Apache Hadoop framework is composed of the following modules:
 - 'Hadoop YARN'  a resource-management platform responsible for managing computing resources in clusters and using them for scheduling of users' applications
 - 'Hadoop MapReduce'  an implementation of the MapReduce programming model for large scale data processing
 
-![alt text](https://github.com/FaroukBENGHARSSALLAH/design-pattern/blob/master/dp-behavioral/dp-behavioral-command/dp-behavioral-command.jpg "Hadoop Components")
+![alt text](https://github.com/FaroukBENGHARSSALLAH/java-bigdata/blob/master/java-bigdata-hadoop/hadoop-components.jpg "Hadoop Components")
 
